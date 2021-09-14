@@ -11,7 +11,14 @@ describe 'Names Challenge' do
   context '#names_list' do
     it "returns a string with each name in 'names' with a comma between them" do
       n_list = names_list(NAMES)
-      expect(n_list).to eq("Will, Jess, Suzy, Caroline, Manish, Natalie, Maicon, Jason, Anderson, Nimra, Alex, Anna, Serge, Konrad, Robert, Frodo")
+      #expect list to be a string
+      expect(n_list).to be_an(String)
+      #expect list to include every name with a comma, bar the last
+      (NAMES.length()-1).times do |iterator| 
+        expect(n_list).to include("#{NAMES[iterator]},")
+      end
+      #expect list to include final name
+      expect(n_list).to include("#{NAMES[NAMES.length()]}")
     end
   end
 
